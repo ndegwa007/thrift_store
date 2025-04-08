@@ -8,8 +8,6 @@ class CreateActionTextTables < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :action_text_rich_texts, [:record_type, :record_id, :name], unique: true, name: "idx_action_text_rich_texts"
-
+    add_index :action_text_rich_texts, [ :record_type, :record_id, :name ], unique: true, name: "idx_action_text_rich_texts"
   end
 end
-

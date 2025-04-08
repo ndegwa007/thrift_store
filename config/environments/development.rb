@@ -69,6 +69,4 @@ Rails.application.configure do
     password: ENV["MAILTRAP_PASSWORD"],
     authentication: :plain
   }
-
-
 end
