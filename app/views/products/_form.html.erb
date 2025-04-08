@@ -1,4 +1,4 @@
-<%= form_with model: product do |form| %>
+<%= form_with model: product, local: true, html: { multipart: true } do |form| %>
  
   <div>
    <%= form.label :name %>
@@ -11,8 +11,8 @@
   </div>
 
   <div>
-     <%= form.label :featured_img, style: "display: block" %>
-     <%= form.file_field :featured_img, accept: "image/*" %>
+     <%= form.label :images, style: "display: block" %>
+     <%= form.file_field :images, name: "product[images][]", accept: "image/*", multiple: true, direct_upload: true %>
   </div>
 
   <div>

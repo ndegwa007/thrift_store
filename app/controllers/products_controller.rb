@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action	:set_product, only: %i[show edit update destroy]
   allow_unauthenticated_access only: %i[index show]
-  
+
   def index
     @products = Product.all
   end
@@ -26,8 +26,12 @@ class ProductsController < ApplicationController
   end
 
   def update
+   if params[:product][:images].present?
+     @product.images.purge # remove existing images
+   end
+
    if @product.update(product_params)
-    redirect_to @product
+    redirect_to @product, notice: "Product successfully updated"
    else
     render :edit, status: :unprocessable_entity
    end
@@ -44,7 +48,6 @@ class ProductsController < ApplicationController
    end
 
    def product_params
-    params.expect(product: [ :name, :description, :featured_img, :inventory_count ])
+    params.require(:product).permit(:name, :description, :inventory_count, images: [])
    end
-  
 end

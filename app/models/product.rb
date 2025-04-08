@@ -2,7 +2,7 @@ class Product < ApplicationRecord
  include Notifications # include concern
 
  has_many :subcribers, dependent: :destroy
- has_one_attached :featured_img
+ has_many_attached :images
  has_rich_text :description
 
  validates :name, presence: true
